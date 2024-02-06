@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1033499886541",
+    "project_id": "fir-webgl-cb47d",
+    "storage_bucket": "fir-webgl-cb47d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033499886541:android:a84e40d2e3d400ceaaba84",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.FirebaseWebGL"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4NFXibqQPdPsUKMTl6XFQ4_Z5gqh8BD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
