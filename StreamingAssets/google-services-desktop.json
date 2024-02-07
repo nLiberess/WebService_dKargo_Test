@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "930432978800",
+    "project_id": "webservice-dkargo-test",
+    "storage_bucket": "webservice-dkargo-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930432978800:android:0b77bd555e123949e489b5",
+        "android_client_info": {
+          "package_name": "com.ndolphinconnect.webservice_dkargo_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC34_KOJM-hPoAfD-PHFhJ6hiKWouq8YkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
