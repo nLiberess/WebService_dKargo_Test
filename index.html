@@ -57,15 +57,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/WebService_dKargo_Test.v0.0.5.loader.js";
+      var loaderUrl = buildUrl + "/WebService_dKargo_Test.v0.0.6.loader.js";
       var config = {
-        dataUrl: buildUrl + "/WebService_dKargo_Test.v0.0.5.data",
-        frameworkUrl: buildUrl + "/WebService_dKargo_Test.v0.0.5.framework.js",
-        codeUrl: buildUrl + "/WebService_dKargo_Test.v0.0.5.wasm",
+        dataUrl: buildUrl + "/WebService_dKargo_Test.v0.0.6.data",
+        frameworkUrl: buildUrl + "/WebService_dKargo_Test.v0.0.6.framework.js",
+        codeUrl: buildUrl + "/WebService_dKargo_Test.v0.0.6.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "ndolphinconnect",
         productName: "Webservice_dKargo",
-        productVersion: "0.0.5",
+        productVersion: "0.0.6",
         showBanner: unityShowBanner,
       };
 
@@ -136,6 +136,7 @@
         googleWebId: "930432978800-gor6pimi8j53s4l1fvgnmkm85lcg4lnu.apps.googleusercontent.com"
       });
 
+      firebase.analytics();
       const db = firebaseApp.firestore();
       const analytics = firebaseApp.analytics();
       const auth = firebaseApp.auth();
