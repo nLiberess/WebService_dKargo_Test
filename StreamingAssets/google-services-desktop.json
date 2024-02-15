@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "930432978800",
-    "project_id": "webservice-dkargo-test",
-    "storage_bucket": "webservice-dkargo-test.appspot.com"
+    "project_number": "999105970441",
+    "project_id": "gogo-2b0c3",
+    "storage_bucket": "gogo-2b0c3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:930432978800:android:0b77bd555e123949e489b5",
+        "mobilesdk_app_id": "1:999105970441:android:f2b4acd9ca3cf626ec13d8",
         "android_client_info": {
-          "package_name": "com.ndolphinconnect.webservice_dkargo_test"
+          "package_name": "com.ndolphinconnect.gogo"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC34_KOJM-hPoAfD-PHFhJ6hiKWouq8YkM"
+          "current_key": "AIzaSyBd_IZtk14NNO6nYztOQEFIUK9dh6oz6Bc"
         }
       ],
       "services": {
