@@ -57,15 +57,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/GoGo.v0.0.6.loader.js";
+      var loaderUrl = buildUrl + "/GoGo.v0.0.7.loader.js";
       var config = {
-        dataUrl: buildUrl + "/GoGo.v0.0.6.data",
-        frameworkUrl: buildUrl + "/GoGo.v0.0.6.framework.js",
-        codeUrl: buildUrl + "/GoGo.v0.0.6.wasm",
+        dataUrl: buildUrl + "/GoGo.v0.0.7.data",
+        frameworkUrl: buildUrl + "/GoGo.v0.0.7.framework.js",
+        codeUrl: buildUrl + "/GoGo.v0.0.7.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "ndolphinconnect",
         productName: "gogo",
-        productVersion: "0.0.6",
+        productVersion: "0.0.7",
         showBanner: unityShowBanner,
       };
 
@@ -121,7 +121,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/9.8.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.2/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.8.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics-compat.js"></script>
 
@@ -137,7 +137,7 @@
       });
 
       firebase.analytics();
-      const db = firebaseApp.firestore();
+      const db = firebaseApp.databases();
       const analytics = firebaseApp.analytics();
       const auth = firebaseApp.auth();
     </script>
