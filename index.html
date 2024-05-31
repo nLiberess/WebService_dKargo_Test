@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | dkargo</title>
+    <title>Unity WebGL Player | gohetbahn</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -20,7 +20,7 @@
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">dkargo</div>
+        <div id="unity-build-title">gohetbahn</div>
       </div>
     </div>
     <script>
@@ -57,15 +57,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/dKargo.v0.0.6.loader.js";
+      var loaderUrl = buildUrl + "/cj.loader.js";
       var config = {
-        dataUrl: buildUrl + "/dKargo.v0.0.6.data",
-        frameworkUrl: buildUrl + "/dKargo.v0.0.6.framework.js",
-        codeUrl: buildUrl + "/dKargo.v0.0.6.wasm",
+        dataUrl: buildUrl + "/cj.data",
+        frameworkUrl: buildUrl + "/cj.framework.js",
+        codeUrl: buildUrl + "/cj.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "ndolphinconnect",
-        productName: "dkargo",
-        productVersion: "0.0.6",
+        productName: "gohetbahn",
+        productVersion: "0.0.1",
         showBanner: unityShowBanner,
       };
 
@@ -105,38 +105,18 @@
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-          window.unityInstance = unityInstance;
-          loadingBar.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-        }).catch((message) => {
-          alert(message);
-        });
-      };
+              }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+
       document.body.appendChild(script);
 
-    </script>
-
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
-
-    <script>
-      var firebaseConfig = {
-        apiKey: "AIzaSyCqF2kWwMltlW_1Yy6iZak6WZlVTbchqAU",
-        authDomain: "gogo-2b0c3.firebaseapp.com",
-        databaseURL: "https://gogo-2b0c3-default-rtdb.firebaseio.com",
-        projectId: "gogo-2b0c3",
-        storageBucket: "gogo-2b0c3.appspot.com",
-        messagingSenderId: "999105970441",
-        appId: "1:999105970441:web:a122a6198de280b5ec13d8",
-        measurementId: "G-6VSK1LP7XG"
-      };
-
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
     </script>
   </body>
 </html>
