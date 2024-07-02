@@ -85,10 +85,11 @@
             script.onload = () => {
                 createUnityInstance(canvas, config, (progress) => {
                     progressBarFull.style.width = 100 * progress + "%";
+                    SendProgress(progress);
                 }).then((unityInstance) => {
                     window.unityInstance = unityInstance;
                     loadingBar.style.display = "none";
-                    window.addEventListener('message', handleMessage);
+                    window.addEventListener('message', HandleMessage);
                     fullscreenButton.onclick = () => {
                         unityInstance.SetFullscreen(1);
                     };
@@ -97,8 +98,16 @@
                 });
             };
             document.body.appendChild(script);
+
+            function SendProgress(progressRate){
+                let procMsg = {
+                    messageType: "progress",
+                    progress : progressRate
+                }
+                window.parent.postMessage(procMsg, "*");
+            }
             
-            function handleMessage(event) {
+            function HandleMessage(event) {
                 try {
                     let jsonData;
                     if (typeof event.data === 'string') {
@@ -110,10 +119,16 @@
                     const {messageType} = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
                     switch (messageType) {
                         case "init":
-                            window.unityInstance.SendMessage("DataMgr", "InitUser", jsonData);
+                            window.unityInstance.SendMessage("DataMgr", "Recv_Init", jsonData);
                             break;
-                        case "reset":
-                            window.unityInstance.SendMessage("DataMgr", "ResetUser", jsonData);
+                        case "submitSuccess":
+                            window.unityInstance.SendMessage("DataMgr", "Recv_SubmitSuccess", jsonData);
+                            break;
+                        case "missionRewardRequest":
+                            window.unityInstance.SendMessage("DataMgr", "Recv_MissionRewardReq", jsonData);
+                            break;
+                        case "environment":
+                            window.unityInstance.SendMessage("DataMgr", "Recv_Environment", jsonData);
                             break;
                     }
                 } catch (error) {
@@ -121,5 +136,11 @@
                 }
             }
         </script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
     </body>
 </html>
