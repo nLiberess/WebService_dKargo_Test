@@ -52,7 +52,7 @@
             }
             
             var buildUrl = "Build";
-            var buildVersion = "0.0.1";
+            var buildVersion = "0.0.2";
             var buildType = "DEV";
             var loaderUrl = `${buildUrl}/${buildType}.loader.js`;
             var config = {
@@ -109,6 +109,9 @@
             
             function HandleMessage(event) {
                 try {
+                    if(event.origin !== 'https://launcher.bleepy.io')
+                        return;
+                    
                     let jsonData;
                     if (typeof event.data === 'string') {
                         jsonData = event.data;
