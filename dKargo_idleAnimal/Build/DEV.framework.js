@@ -4767,8 +4767,10 @@ var ASM_CONSTS = {
           requestOptions.timeout = timeout;
   	}
 
-  function _LoadDataJS(uidPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+  function _LoadDataJS(uidPtr, userKeyPtr, promotionIdPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var uid = UTF8ToString(uidPtr);
+          var parsedUserKey = UTF8ToString(userKeyPtr);
+          var parsedPromotionId = UTF8ToString(promotionIdPtr);
           var objectName = UTF8ToString(objectNamePtr);
           var callback = UTF8ToString(callbackPtr);
           var fallback = UTF8ToString(fallbackPtr);
@@ -4778,8 +4780,8 @@ var ASM_CONSTS = {
                   .then((result) => {
                       if (!result.exists) {
                           const initialData = {
-                              userKey: "",
-                              promotionId: "",
+                              userKey: parsedUserKey,
+                              promotionId: parsedPromotionId,
                               nickname: "",
                               level: 1,
                               experience: 0.0,
@@ -4810,6 +4812,7 @@ var ASM_CONSTS = {
                       } else {
                           const userData = result.data();
                           if (window.unityInstance) {
+                              window.unityInstance.SendMessage(objectName, fallback, "success load");
                               window.unityInstance.SendMessage(objectName, callback, JSON.stringify(userData));
                           }
                       }
