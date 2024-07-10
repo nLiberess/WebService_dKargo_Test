@@ -2157,14 +2157,18 @@ var ASM_CONSTS = {
       }
     }
 
-  function _InitAppJS(jsonDataPtr, objectName, callback, fallback, resultPtr) {
+  function _InitAppJS(jsonDataPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+          var objectName = UTF8ToString(objectNamePtr);
+          var callback = UTF8ToString(callbackPtr);
+          var fallback = UTF8ToString(fallbackPtr);
+            
           var jsonData = UTF8ToString(jsonDataPtr);
           var config = JSON.parse(jsonData);
           firebase.initializeApp(config);
           
           try {
               if (window.unityInstance) {
-                  window.unityInstance.SendMessage(objectName, callback, "Success Init App");
+                  window.unityInstance.SendMessage(objectName, callback);
               }
           } catch (error) {
               if (window.unityInstance) {
