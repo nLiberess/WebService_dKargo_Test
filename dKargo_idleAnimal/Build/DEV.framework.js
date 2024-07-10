@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3568032: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3568093: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3568157: function() {return Module.webglContextAttributes.powerPreference;},  
- 3568215: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3568270: function($0) {performance.now = function() { return $0; };},  
- 3568318: function($0) {performance.now = function() { return $0; };},  
- 3568366: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3568016: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3568077: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3568141: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3568199: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3568254: function($0) {performance.now = function() { return $0; };},  
+ 3568302: function($0) {performance.now = function() { return $0; };},  
+ 3568350: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -2163,11 +2163,6 @@ var ASM_CONSTS = {
           firebase.initializeApp(config);
           
           try {
-              if (resultPtr) {
-                  var callbackFunc = Module.Runtime.getFuncWrapper(resultPtr, 'v');
-                  callbackFunc();
-              }
-  
               if (window.unityInstance) {
                   window.unityInstance.SendMessage(objectName, callback, "Success Init App");
               }
