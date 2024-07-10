@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3567792: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3567853: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3567917: function() {return Module.webglContextAttributes.powerPreference;},  
- 3567975: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3568030: function($0) {performance.now = function() { return $0; };},  
- 3568078: function($0) {performance.now = function() { return $0; };},  
- 3568126: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3568928: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3568989: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3569053: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3569111: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3569166: function($0) {performance.now = function() { return $0; };},  
+ 3569214: function($0) {performance.now = function() { return $0; };},  
+ 3569262: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -2157,10 +2157,26 @@ var ASM_CONSTS = {
       }
     }
 
-  function _InitAppJS(jsonDataPtr) {
+  function _InitAppJS(jsonDataPtr, objectName, callback, fallback, resultPtr) {
           var jsonData = UTF8ToString(jsonDataPtr);
           var config = JSON.parse(jsonData);
-          firebase.initializeApp(config);
+          
+          try {
+              firebase.initializeApp(config);
+              
+              if (resultPtr) {
+                  var callbackFunc = Module.Runtime.getFuncWrapper(resultPtr, 'v');
+                  callbackFunc();
+              }
+  
+              if (window.unityInstance) {
+                  window.unityInstance.SendMessage(objectName, callback, "Success Init App");
+              }
+          } catch (error) {
+              if (window.unityInstance) {
+                  window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+              }
+          }
       }
 
   var JS_Accelerometer = null;
@@ -4812,7 +4828,6 @@ var ASM_CONSTS = {
                       } else {
                           const userData = result.data();
                           if (window.unityInstance) {
-                              window.unityInstance.SendMessage(objectName, fallback, "success load");
                               window.unityInstance.SendMessage(objectName, callback, JSON.stringify(userData));
                           }
                       }
