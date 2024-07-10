@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3567344: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3567405: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3567469: function() {return Module.webglContextAttributes.powerPreference;},  
- 3567527: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3567582: function($0) {performance.now = function() { return $0; };},  
- 3567630: function($0) {performance.now = function() { return $0; };},  
- 3567678: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3567792: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3567853: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3567917: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3567975: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3568030: function($0) {performance.now = function() { return $0; };},  
+ 3568078: function($0) {performance.now = function() { return $0; };},  
+ 3568126: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -15883,7 +15883,6 @@ var asmLibraryArg = {
   "invoke_iji": invoke_iji,
   "invoke_ijji": invoke_ijji,
   "invoke_j": invoke_j,
-  "invoke_jdi": invoke_jdi,
   "invoke_ji": invoke_ji,
   "invoke_jii": invoke_jii,
   "invoke_jiii": invoke_jiii,
@@ -16314,9 +16313,6 @@ var dynCall_viififififfi = Module["dynCall_viififififfi"] = createExportWrapper(
 
 /** @type {function(...*):?} */
 var dynCall_viifififififfi = Module["dynCall_viifififififfi"] = createExportWrapper("dynCall_viifififififfi");
-
-/** @type {function(...*):?} */
-var dynCall_jdi = Module["dynCall_jdi"] = createExportWrapper("dynCall_jdi");
 
 /** @type {function(...*):?} */
 var dynCall_vifiiii = Module["dynCall_vifiiii"] = createExportWrapper("dynCall_vifiiii");
@@ -16935,6 +16931,9 @@ var dynCall_iiidi = Module["dynCall_iiidi"] = createExportWrapper("dynCall_iiidi
 
 /** @type {function(...*):?} */
 var dynCall_di = Module["dynCall_di"] = createExportWrapper("dynCall_di");
+
+/** @type {function(...*):?} */
+var dynCall_jdi = Module["dynCall_jdi"] = createExportWrapper("dynCall_jdi");
 
 /** @type {function(...*):?} */
 var dynCall_dji = Module["dynCall_dji"] = createExportWrapper("dynCall_dji");
@@ -18269,17 +18268,6 @@ function invoke_iiji(index,a1,a2,a3,a4) {
   var sp = stackSave();
   try {
     return dynCall_iiji(index,a1,a2,a3,a4);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_jdi(index,a1,a2) {
-  var sp = stackSave();
-  try {
-    return dynCall_jdi(index,a1,a2);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
