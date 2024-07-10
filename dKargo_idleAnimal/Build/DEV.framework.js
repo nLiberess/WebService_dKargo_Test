@@ -2160,10 +2160,9 @@ var ASM_CONSTS = {
   function _InitAppJS(jsonDataPtr, objectName, callback, fallback, resultPtr) {
           var jsonData = UTF8ToString(jsonDataPtr);
           var config = JSON.parse(jsonData);
+          firebase.initializeApp(config);
           
           try {
-              firebase.initializeApp(config);
-              
               if (resultPtr) {
                   var callbackFunc = Module.Runtime.getFuncWrapper(resultPtr, 'v');
                   callbackFunc();
