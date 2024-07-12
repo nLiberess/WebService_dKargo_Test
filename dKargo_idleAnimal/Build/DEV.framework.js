@@ -4798,7 +4798,7 @@ var ASM_CONSTS = {
                               promotionId: parsedPromotionId,
                               nickname: "",
                               level: 1,
-                              experience: 0.0,
+                              experience: 80.0,
                               maxExperience: 100.0,
                               waterCount: 500,
                               lastWaterSupplyTime: "",
