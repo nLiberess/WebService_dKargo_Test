@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3567968: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3568029: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3568093: function() {return Module.webglContextAttributes.powerPreference;},  
- 3568151: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3568206: function($0) {performance.now = function() { return $0; };},  
- 3568254: function($0) {performance.now = function() { return $0; };},  
- 3568302: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3566976: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3567037: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3567101: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3567159: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3567214: function($0) {performance.now = function() { return $0; };},  
+ 3567262: function($0) {performance.now = function() { return $0; };},  
+ 3567310: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -4799,6 +4799,7 @@ var ASM_CONSTS = {
                               nickname: "",
                               level: 1,
                               experience: 0.0,
+                              maxExperience: 100.0,
                               waterCount: 500,
                               lastWaterSupplyTime: "",
                               feedCount: 5,
