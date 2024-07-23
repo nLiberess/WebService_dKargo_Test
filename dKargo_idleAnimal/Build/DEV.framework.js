@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3687776: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3687837: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3687901: function() {return Module.webglContextAttributes.powerPreference;},  
- 3687959: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3688014: function($0) {performance.now = function() { return $0; };},  
- 3688062: function($0) {performance.now = function() { return $0; };},  
- 3688110: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3687792: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3687853: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3687917: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3687975: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3688030: function($0) {performance.now = function() { return $0; };},  
+ 3688078: function($0) {performance.now = function() { return $0; };},  
+ 3688126: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -4855,6 +4855,7 @@ var ASM_CONSTS = {
                               feedCount: 0,
                               lastFeedSupplyTime: "",
                               nutrimentCount: 0,
+                              lastLoginTime: "",
                               lastElementRemoveTime: "",
                               nextElementRemoveTime: "",
                               todayPettingCount: 0,
