@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3687504: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3687565: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3687629: function() {return Module.webglContextAttributes.powerPreference;},  
- 3687687: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3687742: function($0) {performance.now = function() { return $0; };},  
- 3687790: function($0) {performance.now = function() { return $0; };},  
- 3687838: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3687776: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3687837: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3687901: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3687959: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3688014: function($0) {performance.now = function() { return $0; };},  
+ 3688062: function($0) {performance.now = function() { return $0; };},  
+ 3688110: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -4861,7 +4861,8 @@ var ASM_CONSTS = {
                               lastPettingTime: "",
                               isTutorial: false,
                               isBgmSound: true,
-                              isEffectSound: true
+                              isEffectSound: true,
+                              isGrowthComplete: false
                           };
                           firebase.firestore().collection('Dkargo_User').doc(uid).set(initialData)
                               .then(() => {
