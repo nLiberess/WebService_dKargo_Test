@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3690336: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3690397: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3690461: function() {return Module.webglContextAttributes.powerPreference;},  
- 3690519: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3690574: function($0) {performance.now = function() { return $0; };},  
- 3690622: function($0) {performance.now = function() { return $0; };},  
- 3690670: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3690320: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3690381: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3690445: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3690503: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3690558: function($0) {performance.now = function() { return $0; };},  
+ 3690606: function($0) {performance.now = function() { return $0; };},  
+ 3690654: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -4926,10 +4926,9 @@ var ASM_CONSTS = {
           }
       }
 
-  function _NotifyJS(typePtr, userKeyPtr, promotionIdPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+  function _NotifyJS(typePtr, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var type = UTF8ToString(typePtr);
-          var userKey = UTF8ToString(userKeyPtr);
-          var promotionId = UTF8ToString(promotionIdPtr);
+          var status = UTF8ToString(statusPtr);
           var objectName = UTF8ToString(objectNamePtr);
           var callback = UTF8ToString(callbackPtr);
           var fallback = UTF8ToString(fallbackPtr);
@@ -4938,8 +4937,7 @@ var ASM_CONSTS = {
               if (window.parent) {
                   const message = {
                       messageType: type,
-                      userKey: userKey,
-                      promotionId: promotionId
+                      status: status
                   };
                   window.parent.postMessage(JSON.stringify(message), "*");
               }

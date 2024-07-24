@@ -121,41 +121,17 @@
 
                     let expectedOrigin;
                     if (messageType === 'init') {
-                        switch (environment) {
-                            case 'development':
-                                expectedOrigin = 'https://dev-launcher.bleepy.io';
-                                break;
-                            case 'staging':
-                                expectedOrigin = 'https://stg-launcher.bleepy.io';
-                                break;
-                            case 'demo':
-                                expectedOrigin = 'https://demo-launcher.bleepy.io';
-                                break;
-                            case 'production':
-                            default:
-                                expectedOrigin = 'https://launcher.bleepy.io';
-                                break;
+                        if (environment === 'production') {
+                            expectedOrigin = 'https://launcher.bleepy.io';
                         }
                         savedEnvironment = environment;
                     } else {
-                        switch (savedEnvironment) {
-                            case 'development':
-                                expectedOrigin = 'https://dev-launcher.bleepy.io';
-                                break;
-                            case 'staging':
-                                expectedOrigin = 'https://stg-launcher.bleepy.io';
-                                break;
-                            case 'demo':
-                                expectedOrigin = 'https://demo-launcher.bleepy.io';
-                                break;
-                            case 'production':
-                            default:
-                                expectedOrigin = 'https://launcher.bleepy.io';
-                                break;
+                        if (savedEnvironment === 'production') {
+                            expectedOrigin = 'https://launcher.bleepy.io';
                         }
                     }
 
-                    if (event.origin !== expectedOrigin) {
+                    if (savedEnvironment === 'production' && event.origin !== expectedOrigin) {
                         return;
                     }
 
