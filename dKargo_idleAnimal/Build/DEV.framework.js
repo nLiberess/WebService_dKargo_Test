@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3690320: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3690381: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3690445: function() {return Module.webglContextAttributes.powerPreference;},  
- 3690503: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3690558: function($0) {performance.now = function() { return $0; };},  
- 3690606: function($0) {performance.now = function() { return $0; };},  
- 3690654: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3690304: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3690365: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3690429: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3690487: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3690542: function($0) {performance.now = function() { return $0; };},  
+ 3690590: function($0) {performance.now = function() { return $0; };},  
+ 3690638: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -4906,26 +4906,6 @@ var ASM_CONSTS = {
           document.makeFullscreen(UTF8ToString(str));
       }
 
-  function _MessageJS(typePtr, objectNamePtr, callbackPtr, fallbackPtr) {
-          var type = UTF8ToString(typePtr);
-          var objectName = UTF8ToString(objectNamePtr);
-          var callback = UTF8ToString(callbackPtr);
-          var fallback = UTF8ToString(fallbackPtr);
-  
-          try {
-              if (window.parent) {
-                  const message = {
-                      messageType: type
-                  };
-                  window.parent.postMessage(JSON.stringify(message), "*");
-              }
-              window.unityInstance.SendMessage(objectName, callback, "");
-  
-          } catch (error) {
-              window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
-          }
-      }
-
   function _NotifyJS(typePtr, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var type = UTF8ToString(typePtr);
           var status = UTF8ToString(statusPtr);
@@ -4941,10 +4921,10 @@ var ASM_CONSTS = {
                   };
                   window.parent.postMessage(JSON.stringify(message), "*");
               }
-              window.unityInstance.SendMessage(objectName, callback, "");
+              window.unityInstance.SendMessage(objectName, callback, "Success Notify: " + type + ", " + status);
   
           } catch (error) {
-              window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+              window.unityInstance.SendMessage(objectName, fallback, "Failed Notify: " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
           }
       }
 
@@ -16049,7 +16029,6 @@ var asmLibraryArg = {
   "LoadDataJS": _LoadDataJS,
   "LoadSoundJS": _LoadSoundJS,
   "MakeFullscreen": _MakeFullscreen,
-  "MessageJS": _MessageJS,
   "NotifyJS": _NotifyJS,
   "PostJS": _PostJS,
   "SaveDataJS": _SaveDataJS,
