@@ -106,20 +106,59 @@
                 }
                 window.parent.postMessage(procMsg, "*");
             }
-            
+
+            let savedEnvironment = 'development';
             function HandleMessage(event) {
                 try {
-                    if(event.origin !== 'https://launcher.bleepy.io')
-                        return;
-                    
                     let jsonData;
                     if (typeof event.data === 'string') {
-                        jsonData = event.data;
+                        jsonData = JSON.parse(event.data);
                     } else {
-                        jsonData = JSON.stringify(event.data);
+                        jsonData = event.data;
                     }
-                    
-                    const {messageType} = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+
+                    const { messageType, environment } = jsonData;
+
+                    let expectedOrigin;
+                    if (messageType === 'init') {
+                        switch (environment) {
+                            case 'development':
+                                expectedOrigin = 'https://dev-launcher.bleepy.io';
+                                break;
+                            case 'staging':
+                                expectedOrigin = 'https://stg-launcher.bleepy.io';
+                                break;
+                            case 'demo':
+                                expectedOrigin = 'https://demo-launcher.bleepy.io';
+                                break;
+                            case 'production':
+                            default:
+                                expectedOrigin = 'https://launcher.bleepy.io';
+                                break;
+                        }
+                        savedEnvironment = environment;
+                    } else {
+                        switch (savedEnvironment) {
+                            case 'development':
+                                expectedOrigin = 'https://dev-launcher.bleepy.io';
+                                break;
+                            case 'staging':
+                                expectedOrigin = 'https://stg-launcher.bleepy.io';
+                                break;
+                            case 'demo':
+                                expectedOrigin = 'https://demo-launcher.bleepy.io';
+                                break;
+                            case 'production':
+                            default:
+                                expectedOrigin = 'https://launcher.bleepy.io';
+                                break;
+                        }
+                    }
+
+                    if (event.origin !== expectedOrigin) {
+                        return;
+                    }
+
                     switch (messageType) {
                         case "init":
                             window.unityInstance.SendMessage("DataMgr", "Recv_Init", jsonData);
