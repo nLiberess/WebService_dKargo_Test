@@ -4858,9 +4858,10 @@ var ASM_CONSTS = {
                               lastLoginTime: "",
                               lastElementRemoveTime: "",
                               nextElementRemoveTime: "",
-                              todayPettingCount: 0,
                               lastPettingTime: "",
-                              isTutorial: false,
+                              todayPettingCount: 0,
+                              isTutorialCompleted: false,
+                              isTutorialInProgress: false,
                               isBgmSound: true,
                               isEffectSound: true,
                               isGrowthComplete: false

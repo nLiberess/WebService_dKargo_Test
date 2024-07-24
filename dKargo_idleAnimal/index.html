@@ -110,14 +110,8 @@
             let savedEnvironment = 'development';
             function HandleMessage(event) {
                 try {
-                    let jsonData;
-                    if (typeof event.data === 'string') {
-                        jsonData = JSON.parse(event.data);
-                    } else {
-                        jsonData = event.data;
-                    }
-
-                    const { messageType, environment } = jsonData;
+                    const jsonData = JSON.stringify(event.data);
+                    const { messageType, environment } = event.data;
 
                     let expectedOrigin;
                     if (messageType === 'init') {
