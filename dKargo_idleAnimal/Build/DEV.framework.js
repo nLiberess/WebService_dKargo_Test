@@ -2186,8 +2186,8 @@ var ASM_CONSTS = {
 
   function _GameDataSubmitJS(typePtr, submitTypePtr, submitValuePtr, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var type = UTF8ToString(typePtr);
-          var submitType = UTF8ToString(typePtr);
-          var submitValue = UTF8ToString(typePtr);
+          var submitType = UTF8ToString(submitTypePtr);
+          var submitValue = UTF8ToString(submitValuePtr);
           var status = UTF8ToString(statusPtr);
           var objectName = UTF8ToString(objectNamePtr);
           var callback = UTF8ToString(callbackPtr);
