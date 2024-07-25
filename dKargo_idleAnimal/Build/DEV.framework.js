@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3690144: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3690205: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3690269: function() {return Module.webglContextAttributes.powerPreference;},  
- 3690327: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3690382: function($0) {performance.now = function() { return $0; };},  
- 3690430: function($0) {performance.now = function() { return $0; };},  
- 3690478: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3690304: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3690365: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3690429: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3690487: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3690542: function($0) {performance.now = function() { return $0; };},  
+ 3690590: function($0) {performance.now = function() { return $0; };},  
+ 3690638: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -2181,6 +2181,32 @@ var ASM_CONSTS = {
               else if (document.msExitFullscreen) document.msExitFullscreen();
               else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
               else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+          }
+      }
+
+  function _GameDataSubmitJS(typePtr, submitTypePtr, submitValuePtr, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+          var type = UTF8ToString(typePtr);
+          var submitType = UTF8ToString(typePtr);
+          var submitValue = UTF8ToString(typePtr);
+          var status = UTF8ToString(statusPtr);
+          var objectName = UTF8ToString(objectNamePtr);
+          var callback = UTF8ToString(callbackPtr);
+          var fallback = UTF8ToString(fallbackPtr);
+          
+          try {
+              if (window.parent) {
+                  const message = {
+                      messageType: type,
+                      gameDataSubmitType: submitType,
+                      gameDataSubmitValue: submitValue,
+                      status: status
+                  };
+                  window.parent.postMessage(message, "*");
+              }
+              window.unityInstance.SendMessage(objectName, callback, "Success " + type + ": " + status + ", flag: " + flag);
+                                
+          } catch (error) {
+              window.unityInstance.SendMessage(objectName, fallback, "Failed " + type + ": " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
           }
       }
 
@@ -4832,6 +4858,29 @@ var ASM_CONSTS = {
           requestOptions.timeout = timeout;
   	}
 
+  function _LauncherUIJS(typePtr, flag, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+          var type = UTF8ToString(typePtr);
+          var status = UTF8ToString(statusPtr);
+          var objectName = UTF8ToString(objectNamePtr);
+          var callback = UTF8ToString(callbackPtr);
+          var fallback = UTF8ToString(fallbackPtr);
+          
+          try {
+              if (window.parent) {
+                  const message = {
+                      messageType: type,
+                      launcherShowFlag: flag ? "true" : "false",
+                      status: status
+                  };
+                  window.parent.postMessage(message, "*");
+              }
+              window.unityInstance.SendMessage(objectName, callback, "Success " + type + ": " + status + ", flag: " + flag);
+          
+          } catch (error) {
+              window.unityInstance.SendMessage(objectName, fallback, "Failed " + type + ": " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
+          }
+      }
+
   function _LoadDataJS(uidPtr, userKeyPtr, promotionIdPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var uid = UTF8ToString(uidPtr);
           var parsedUserKey = UTF8ToString(userKeyPtr);
@@ -4920,38 +4969,12 @@ var ASM_CONSTS = {
                       messageType: type,
                       status: status
                   };
-                  window.parent.postMessage(JSON.stringify(message), "*");
+                  window.parent.postMessage(message, "*");
               }
-              window.unityInstance.SendMessage(objectName, callback, "Success Notify: " + type + ", " + status);
+              window.unityInstance.SendMessage(objectName, callback, "Success " + type + ": " + status);
   
           } catch (error) {
-              window.unityInstance.SendMessage(objectName, fallback, "Failed Notify: " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
-          }
-      }
-
-  function _PostJS(typePtr, userKeyPtr, promotionIdPtr, scorePtr, objectNamePtr, callbackPtr, fallbackPtr) {
-          var type = UTF8ToString(typePtr);
-          var userKey = UTF8ToString(userKeyPtr);
-          var promotionId = UTF8ToString(promotionIdPtr);
-          var score = UTF8ToString(scorePtr);
-          var objectName = UTF8ToString(objectNamePtr);
-          var callback = UTF8ToString(callbackPtr);
-          var fallback = UTF8ToString(fallbackPtr);
-  
-          try {
-              if (window.parent) {
-                  const message = {
-                      messageType: type,
-                      userKey: userKey,
-                      promotionId: promotionId,
-                      gameScore: score
-                  };
-                  window.parent.postMessage(JSON.stringify(message), "*");
-              }
-              window.unityInstance.SendMessage(objectName, callback, "");
-  
-          } catch (error) {
-              window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+              window.unityInstance.SendMessage(objectName, fallback, "Failed " + type + ": " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
           }
       }
 
@@ -4979,6 +5002,34 @@ var ASM_CONSTS = {
               if (window.unityInstance) {
                   window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
               }
+          }
+      }
+
+  function _SubmitScoreJS(typePtr, userKeyPtr, promotionIdPtr, scorePtr, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+          var type = UTF8ToString(typePtr);
+          var userKey = UTF8ToString(userKeyPtr);
+          var promotionId = UTF8ToString(promotionIdPtr);
+          var score = UTF8ToString(scorePtr);
+          var status = UTF8ToString(statusPtr);
+          var objectName = UTF8ToString(objectNamePtr);
+          var callback = UTF8ToString(callbackPtr);
+          var fallback = UTF8ToString(fallbackPtr);
+  
+          try {
+              if (window.parent) {
+                  const message = {
+                      messageType: type,
+                      userKey: userKey,
+                      promotionId: promotionId,
+                      gameScore: score,
+                      status: status
+                  };
+                  window.parent.postMessage(message, "*");
+              }
+              window.unityInstance.SendMessage(objectName, callback, "Success " + type + ": " + status);
+  
+          } catch (error) {
+              window.unityInstance.SendMessage(objectName, fallback, "Failed " + type + ": " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
           }
       }
 
@@ -15938,6 +15989,7 @@ function checkIncomingModuleAPI() {
 var asmLibraryArg = {
   "DeleteDataJS": _DeleteDataJS,
   "ExitFullscreen": _ExitFullscreen,
+  "GameDataSubmitJS": _GameDataSubmitJS,
   "GetJSMemoryInfo": _GetJSMemoryInfo,
   "InitAppJS": _InitAppJS,
   "IsFullscreen": _IsFullscreen,
@@ -16027,12 +16079,13 @@ var asmLibraryArg = {
   "JS_WebRequest_SetRedirectLimit": _JS_WebRequest_SetRedirectLimit,
   "JS_WebRequest_SetRequestHeader": _JS_WebRequest_SetRequestHeader,
   "JS_WebRequest_SetTimeout": _JS_WebRequest_SetTimeout,
+  "LauncherUIJS": _LauncherUIJS,
   "LoadDataJS": _LoadDataJS,
   "LoadSoundJS": _LoadSoundJS,
   "MakeFullscreen": _MakeFullscreen,
   "NotifyJS": _NotifyJS,
-  "PostJS": _PostJS,
   "SaveDataJS": _SaveDataJS,
+  "SubmitScoreJS": _SubmitScoreJS,
   "WebGLInputCreate": _WebGLInputCreate,
   "WebGLInputDelete": _WebGLInputDelete,
   "WebGLInputEnterSubmit": _WebGLInputEnterSubmit,
