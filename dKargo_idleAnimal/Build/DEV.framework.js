@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3696272: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3696333: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3696397: function() {return Module.webglContextAttributes.powerPreference;},  
- 3696455: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3696510: function($0) {performance.now = function() { return $0; };},  
- 3696558: function($0) {performance.now = function() { return $0; };},  
- 3696606: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3696368: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3696429: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3696493: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3696551: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3696606: function($0) {performance.now = function() { return $0; };},  
+ 3696654: function($0) {performance.now = function() { return $0; };},  
+ 3696702: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -2187,24 +2187,23 @@ var ASM_CONSTS = {
   function _GameDataSubmitJS(typePtr, submitTypePtr, submitValuePtr, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var type = UTF8ToString(typePtr);
           var submitType = UTF8ToString(submitTypePtr);
-          var submitValue = UTF8ToString(submitValuePtr);
           var status = UTF8ToString(statusPtr);
           var objectName = UTF8ToString(objectNamePtr);
           var callback = UTF8ToString(callbackPtr);
           var fallback = UTF8ToString(fallbackPtr);
-          
+              
           try {
               if (window.parent) {
                   const message = {
                       messageType: type,
                       gameDataSubmitType: submitType,
-                      gameDataSubmitValue: submitValue,
+                      gameDataSubmitValue: submitValuePtr,
                       status: status
                   };
-                  window.parent.postMessage(message, "*");
-              }
+              window.parent.postMessage(message, "*");
+          }
               window.unityInstance.SendMessage(objectName, callback, "Success " + type + ": " + submitType + ", " + status);
-                                
+                                    
           } catch (error) {
               window.unityInstance.SendMessage(objectName, fallback, "Failed " + type + ": " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
           }
