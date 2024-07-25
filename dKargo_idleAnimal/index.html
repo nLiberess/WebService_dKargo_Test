@@ -136,8 +136,8 @@
                         case "submitSuccess":
                             window.unityInstance.SendMessage("DataMgr", "Recv_SubmitSuccess", jsonData);
                             break;
-                        case "missionRewardRequest":
-                            window.unityInstance.SendMessage("DataMgr", "Recv_MissionRewardReq", jsonData);
+                        case "inGameRewardRequest":
+                            window.unityInstance.SendMessage("DataMgr", "Recv_InGameRewardReq", jsonData);
                             break;
                         case "environment":
                             window.unityInstance.SendMessage("DataMgr", "Recv_Environment", jsonData);
