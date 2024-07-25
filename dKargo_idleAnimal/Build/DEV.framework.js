@@ -2203,7 +2203,7 @@ var ASM_CONSTS = {
                   };
                   window.parent.postMessage(message, "*");
               }
-              window.unityInstance.SendMessage(objectName, callback, "Success " + type + ": " + status + ", flag: " + flag);
+              window.unityInstance.SendMessage(objectName, callback, "Success " + type + ": " + submitType + ", " + status);
                                 
           } catch (error) {
               window.unityInstance.SendMessage(objectName, fallback, "Failed " + type + ": " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
