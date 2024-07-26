@@ -2289,7 +2289,7 @@ var ASM_CONSTS = {
           
           try {
               if (window.unityInstance) {
-                  window.unityInstance.SendMessage(objectName, callback);
+                  window.unityInstance.SendMessage(objectName, callback, "");
               }
           } catch (error) {
               if (window.unityInstance) {
