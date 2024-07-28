@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3699248: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3699309: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3699373: function() {return Module.webglContextAttributes.powerPreference;},  
- 3699431: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3699486: function($0) {performance.now = function() { return $0; };},  
- 3699534: function($0) {performance.now = function() { return $0; };},  
- 3699582: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3699504: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3699565: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3699629: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3699687: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3699742: function($0) {performance.now = function() { return $0; };},  
+ 3699790: function($0) {performance.now = function() { return $0; };},  
+ 3699838: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -5007,13 +5007,6 @@ var ASM_CONSTS = {
           }
       }
 
-  function _LoadSoundJS(uidPtr, objectNamePtr, callbackPtr, fallbackPtr) {
-          var uid = UTF8ToString(uidPtr);
-          var objectName = UTF8ToString(objectNamePtr);
-          var callback = UTF8ToString(callbackPtr);
-          var fallback = UTF8ToString(fallbackPtr);
-      }
-
   function _MakeFullscreen(str) {
           document.makeFullscreen(UTF8ToString(str));
       }
@@ -5076,6 +5069,36 @@ var ASM_CONSTS = {
           try {
               const jsonObj = JSON.parse(jsonData);
               firebase.firestore().collection('Dkargo_User').doc(uid).set(jsonObj)
+              .catch((error) => {
+                  if (window.unityInstance) {
+                      window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+                  }
+              });
+          } catch (error) {
+              if (window.unityInstance) {
+                  window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+              }
+          }
+      }
+
+  function _SaveSoundDataJS(uidPtr, soundDataPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+          var uid = UTF8ToString(uidPtr);
+          var soundData = UTF8ToString(soundDataPtr);
+          var objectName = UTF8ToString(objectNamePtr);
+          var callback = UTF8ToString(callbackPtr);
+          var fallback = UTF8ToString(fallbackPtr);
+      
+          try {
+              const soundObj = JSON.parse(soundData);
+              firebase.firestore().collection('Dkargo_User').doc(uid).update({
+                  isBgmSound: soundObj.isBgmSound,
+                  isEffectSound: soundObj.isEffectSound
+              })
+              .then(() => {
+                  if (window.unityInstance) {
+                      window.unityInstance.SendMessage(objectName, callback, "Success SaveSoundData");
+                  }
+              })
               .catch((error) => {
                   if (window.unityInstance) {
                       window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
@@ -16193,11 +16216,11 @@ var asmLibraryArg = {
   "JS_WebRequest_SetTimeout": _JS_WebRequest_SetTimeout,
   "LauncherUIJS": _LauncherUIJS,
   "LoadDataJS": _LoadDataJS,
-  "LoadSoundJS": _LoadSoundJS,
   "MakeFullscreen": _MakeFullscreen,
   "NotifyJS": _NotifyJS,
   "NotifyUIDJS": _NotifyUIDJS,
   "SaveDataJS": _SaveDataJS,
+  "SaveSoundDataJS": _SaveSoundDataJS,
   "SendRewardResponseJS": _SendRewardResponseJS,
   "SubmitScoreJS": _SubmitScoreJS,
   "WebGLInputCreate": _WebGLInputCreate,
