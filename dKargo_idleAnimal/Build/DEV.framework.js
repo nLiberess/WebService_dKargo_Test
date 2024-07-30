@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3699616: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3699677: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3699741: function() {return Module.webglContextAttributes.powerPreference;},  
- 3699799: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3699854: function($0) {performance.now = function() { return $0; };},  
- 3699902: function($0) {performance.now = function() { return $0; };},  
- 3699950: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3699648: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3699709: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3699773: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3699831: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3699886: function($0) {performance.now = function() { return $0; };},  
+ 3699934: function($0) {performance.now = function() { return $0; };},  
+ 3699982: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -5104,6 +5104,28 @@ var ASM_CONSTS = {
                       window.unityInstance.SendMessage(objectName, callback, "Success SaveSoundData");
                   }
               })
+              .catch((error) => {
+                  if (window.unityInstance) {
+                      window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+                  }
+              });
+          } catch (error) {
+              if (window.unityInstance) {
+                  window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+              }
+          }
+      }
+
+  function _SaveTempDataJS(uidPtr, jsonDataPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+          var uid = UTF8ToString(uidPtr);
+          var jsonData = UTF8ToString(jsonDataPtr);
+          var objectName = UTF8ToString(objectNamePtr);
+          var callback = UTF8ToString(callbackPtr);
+          var fallback = UTF8ToString(fallbackPtr);
+      
+          try {
+              const jsonObj = JSON.parse(jsonData);
+              firebase.firestore().collection('Dkargo_User').doc(uid).set(jsonObj)
               .catch((error) => {
                   if (window.unityInstance) {
                       window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
@@ -16225,6 +16247,7 @@ var asmLibraryArg = {
   "NotifyUIDJS": _NotifyUIDJS,
   "SaveDataJS": _SaveDataJS,
   "SaveSoundDataJS": _SaveSoundDataJS,
+  "SaveTempDataJS": _SaveTempDataJS,
   "SendRewardResponseJS": _SendRewardResponseJS,
   "SubmitScoreJS": _SubmitScoreJS,
   "WebGLInputCreate": _WebGLInputCreate,
