@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3699616: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3699677: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3699741: function() {return Module.webglContextAttributes.powerPreference;},  
- 3699799: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3699854: function($0) {performance.now = function() { return $0; };},  
- 3699902: function($0) {performance.now = function() { return $0; };},  
- 3699950: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3699776: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3699837: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3699901: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3699959: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3700014: function($0) {performance.now = function() { return $0; };},  
+ 3700062: function($0) {performance.now = function() { return $0; };},  
+ 3700110: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -4974,8 +4974,9 @@ var ASM_CONSTS = {
                               isBgmSound: true,
                               isEffectSound: true,
                               isGrowthComplete: false,
-                              levelSync: false,
-                              isGetDailyReward: false
+                              levelSync: true,
+                              isGetDailyReward: false,
+                              isGetCompleteReward: false
                           };
                           firebase.firestore().collection('Dkargo_User').doc(uid).set(initialData)
                               .then(() => {
@@ -5126,6 +5127,11 @@ var ASM_CONSTS = {
           try {
               const jsonObj = JSON.parse(jsonData);
               firebase.firestore().collection('Dkargo_User').doc(uid).set(jsonObj)
+              .then(() => {
+                  if (window.unityInstance) {
+                      window.unityInstance.SendMessage(objectName, callback, "Success SaveTempData");
+                  }
+              })
               .catch((error) => {
                   if (window.unityInstance) {
                       window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
