@@ -4975,8 +4975,7 @@ var ASM_CONSTS = {
                               isEffectSound: true,
                               isGrowthComplete: false,
                               levelSync: true,
-                              isGetDailyReward: false,
-                              isGetCompleteReward: false
+                              isGetDailyReward: false
                           };
                           firebase.firestore().collection('Dkargo_User').doc(uid).set(initialData)
                               .then(() => {
