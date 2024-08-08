@@ -52,7 +52,7 @@
             }
             
             var buildUrl = "Build";
-            var buildVersion = "0.0.18";
+            var buildVersion = "0.0.19";
             var buildType = "DEV";
             var loaderUrl = `${buildUrl}/${buildType}.loader.js`;
             var config = {
@@ -138,9 +138,6 @@
                             break;
                         case "inGameRewardRequest":
                             window.unityInstance.SendMessage("DataMgr", "Recv_InGameRewardReq", jsonData);
-                            break;
-                        case "finishFailedRetrySuccess":
-                            window.unityInstance.SendMessage("DataMgr", "Recv_FinishFailedRetrySuccess", jsonData);
                             break;
                         case "environment":
                             window.unityInstance.SendMessage("DataMgr", "Recv_Environment", jsonData);

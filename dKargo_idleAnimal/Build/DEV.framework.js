@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3688208: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3688269: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3688333: function() {return Module.webglContextAttributes.powerPreference;},  
- 3688391: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3688446: function($0) {performance.now = function() { return $0; };},  
- 3688494: function($0) {performance.now = function() { return $0; };},  
- 3688542: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3688048: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3688109: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3688173: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3688231: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3688286: function($0) {performance.now = function() { return $0; };},  
+ 3688334: function($0) {performance.now = function() { return $0; };},  
+ 3688382: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -2147,25 +2147,6 @@ var ASM_CONSTS = {
       return demangleAll(js);
     }
 
-  function _CheckDataJS(uidPtr, objectNamePtr, callbackPtr, fallbackPtr) {
-          var uid = UTF8ToString(uidPtr);
-          var objectName = UTF8ToString(objectNamePtr);
-          var callback = UTF8ToString(callbackPtr);
-          var fallback = UTF8ToString(fallbackPtr);
-          
-          firebase.firestore().collection('Dkargo_User').doc(uid).get()
-          .then((doc) => {
-              if (window.unityInstance) {
-                  window.unityInstance.SendMessage(objectName, callback, doc.exists.toString());
-              }
-          })
-          .catch((error) => {
-              if (window.unityInstance) {
-                  window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
-              }
-          });
-      }
-
   function _DeleteDataJS(uidPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var uid = UTF8ToString(uidPtr);
           var objectName = UTF8ToString(objectNamePtr);
@@ -2189,19 +2170,6 @@ var ASM_CONSTS = {
                   window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
               }
           }
-      }
-
-  function _DeleteTempDataJS(uidPtr, objectNamePtr, callbackPtr, fallbackPtr) {
-          var uid = UTF8ToString(uidPtr);
-          var objectName = UTF8ToString(objectNamePtr);
-          var fallback = UTF8ToString(fallbackPtr);
-          
-          firebase.firestore().collection('Dkargo_User').doc(uid).delete()
-          .catch(function(error) {
-              if (window.unityInstance) {
-                  window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
-              }
-          });
       }
 
   function _ExitFullscreen() {
@@ -4837,33 +4805,6 @@ var ASM_CONSTS = {
           }
       }
 
-  function _SaveTempDataJS(uidPtr, jsonDataPtr, objectNamePtr, callbackPtr, fallbackPtr) {
-          var uid = UTF8ToString(uidPtr);
-          var jsonData = UTF8ToString(jsonDataPtr);
-          var objectName = UTF8ToString(objectNamePtr);
-          var callback = UTF8ToString(callbackPtr);
-          var fallback = UTF8ToString(fallbackPtr);
-      
-          try {
-              const jsonObj = JSON.parse(jsonData);
-              firebase.firestore().collection('Dkargo_User').doc(uid).set(jsonObj)
-              .then(() => {
-                  if (window.unityInstance) {
-                      window.unityInstance.SendMessage(objectName, callback, "Success SaveTempData");
-                  }
-              })
-              .catch((error) => {
-                  if (window.unityInstance) {
-                      window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
-                  }
-              });
-          } catch (error) {
-              if (window.unityInstance) {
-                  window.unityInstance.SendMessage(objectName, fallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
-              }
-          }
-      }
-
   function _SendRewardResponseJS(typePtr, resultListPtr, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var type = UTF8ToString(typePtr);
           var resultListJson = UTF8ToString(resultListPtr);
@@ -4910,7 +4851,7 @@ var ASM_CONSTS = {
                   };
                   window.parent.postMessage(message, "*");
               }
-              window.unityInstance.SendMessage(objectName, callback, score);
+              window.unityInstance.SendMessage(objectName, callback, "Success SubmitScore");
   
           } catch (error) {
               window.unityInstance.SendMessage(objectName, fallback, "Failed " + type + ": " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
@@ -15871,9 +15812,7 @@ function checkIncomingModuleAPI() {
   ignoredModuleProp('fetchSettings');
 }
 var asmLibraryArg = {
-  "CheckDataJS": _CheckDataJS,
   "DeleteDataJS": _DeleteDataJS,
-  "DeleteTempDataJS": _DeleteTempDataJS,
   "ExitFullscreen": _ExitFullscreen,
   "GameDataSubmitIntJS": _GameDataSubmitIntJS,
   "GameDataSubmitStrJS": _GameDataSubmitStrJS,
@@ -15964,7 +15903,6 @@ var asmLibraryArg = {
   "NotifyUIDJS": _NotifyUIDJS,
   "SaveDataJS": _SaveDataJS,
   "SaveSoundDataJS": _SaveSoundDataJS,
-  "SaveTempDataJS": _SaveTempDataJS,
   "SendRewardResponseJS": _SendRewardResponseJS,
   "SubmitScoreJS": _SubmitScoreJS,
   "WebGLInputCreate": _WebGLInputCreate,
