@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3688080: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3688141: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3688205: function() {return Module.webglContextAttributes.powerPreference;},  
- 3688263: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3688318: function($0) {performance.now = function() { return $0; };},  
- 3688366: function($0) {performance.now = function() { return $0; };},  
- 3688414: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3688432: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3688493: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3688557: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3688615: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3688670: function($0) {performance.now = function() { return $0; };},  
+ 3688718: function($0) {performance.now = function() { return $0; };},  
+ 3688766: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -4815,12 +4815,13 @@ var ASM_CONSTS = {
       
           try {
               var resultList = JSON.parse(resultListJson);
+              var message = {
+                  messageType: type,
+                  inGameRewardWinnerResultList: resultList.inGameRewardWinnerResultList,
+                  status: status
+              };
+              
               if (window.parent) {
-                  const message = {
-                      messageType: type,
-                      inGameRewardWinnerResultList: resultList.inGameRewardWinnerResultList,
-                      status: status
-                  };
                   window.parent.postMessage(message, "*");
               }
       
