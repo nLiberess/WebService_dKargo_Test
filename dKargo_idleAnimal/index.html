@@ -81,11 +81,6 @@
     window.addEventListener('resize', ResizeCanvas);
     window.addEventListener('load', ResizeCanvas);
 
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.classList.add("unity-mobile");
-        canvas.classList.add("unity-mobile");
-    }
-
     loadingBar.style.display = "block";
 
     var script = document.createElement("script");
