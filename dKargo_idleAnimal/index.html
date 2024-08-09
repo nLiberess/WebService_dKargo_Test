@@ -119,6 +119,12 @@
             let savedEnvironment = 'development';
             function HandleMessage(event) {
                 try {
+
+                    if (!window.unityInstance) {
+                        console.warn("Unity instance is not available. Ignoring the message.");
+                        return;
+                    }
+                    
                     const jsonData = JSON.stringify(event.data);
                     const { messageType, environment } = event.data;
 
