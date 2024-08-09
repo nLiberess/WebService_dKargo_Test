@@ -14,13 +14,13 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 #unity-canvas {
     background: #231F20;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     object-fit: cover;
 }
 
