@@ -2,6 +2,7 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
+    height: 100vh;
 }
 
 #unity-container {
@@ -20,10 +21,9 @@ body {
     background: #231F20;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 화면 비율에 맞게 조정 */
+    object-fit: cover;
 }
 
-/* 모바일 환경 스타일 */
 .unity-mobile #unity-container {
     position: absolute;
     left: 0;
@@ -34,11 +34,11 @@ body {
 }
 
 .unity-mobile #unity-canvas {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
 }
 
-/* 로딩바 및 경고 스타일 */
 #unity-loading-bar {
     position: absolute;
     left: 50%;
