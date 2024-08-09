@@ -67,9 +67,24 @@
             };
 
             function ResizeCanvas() {
-                var canvas = document.getElementById("unity-canvas");
-                canvas.style.width = window.innerWidth + "px";
-                canvas.style.height = window.innerHeight + "px";
+                var intendedAspectRatio = 720 / 1280;
+
+                var windowWidth = window.innerWidth;
+                var windowHeight = window.innerHeight;
+
+                var newWidth = windowWidth;
+                var newHeight = windowWidth / intendedAspectRatio;
+
+                if (newHeight > windowHeight) {
+                    newHeight = windowHeight;
+                    newWidth = windowHeight * intendedAspectRatio;
+                }
+
+                canvas.style.width = newWidth + 'px';
+                canvas.style.height = newHeight + 'px';
+
+                canvas.style.marginLeft = (windowWidth - newWidth) / 2 + 'px';
+                canvas.style.marginTop = (windowHeight - newHeight) / 2 + 'px';
             }
 
             window.addEventListener('resize', ResizeCanvas);
