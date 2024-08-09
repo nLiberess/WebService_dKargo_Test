@@ -69,22 +69,19 @@
             function ResizeCanvas() {
                 var intendedAspectRatio = 720 / 1280;
 
-                var windowWidth = window.innerWidth;
-                var windowHeight = window.innerHeight;
+                var containerWidth = window.innerWidth;
+                var containerHeight = window.innerHeight;
 
-                var newWidth = windowWidth;
-                var newHeight = windowWidth / intendedAspectRatio;
+                var newWidth = containerWidth;
+                var newHeight = containerWidth / intendedAspectRatio;
 
-                if (newHeight > windowHeight) {
-                    newHeight = windowHeight;
-                    newWidth = windowHeight * intendedAspectRatio;
+                if (newHeight > containerHeight) {
+                    newHeight = containerHeight;
+                    newWidth = containerHeight * intendedAspectRatio;
                 }
 
                 canvas.style.width = newWidth + 'px';
                 canvas.style.height = newHeight + 'px';
-
-                canvas.style.marginLeft = (windowWidth - newWidth) / 2 + 'px';
-                canvas.style.marginTop = (windowHeight - newHeight) / 2 + 'px';
             }
 
             window.addEventListener('resize', ResizeCanvas);
