@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Unity WebGL Player | idleAnimal</title>
+        <title>bleepy BGM</title>
         <link rel="shortcut icon" href="TemplateData/favicon.ico">
         <link rel="stylesheet" href="TemplateData/style.css">
     </head>
@@ -46,7 +46,7 @@
             }
             
             var buildUrl = "Build";
-            var buildVersion = "0.0.20";
+            var buildVersion = "0.0.21";
             var buildType = "DEV";
             var loaderUrl = `${buildUrl}/${buildType}.loader.js`;
             var config = {
@@ -59,27 +59,6 @@
                 productVersion: `${buildVersion}`, 
                 showBanner: unityShowBanner,
             };
-
-            function ResizeCanvas() {
-                var intendedAspectRatio = 720 / 1280;
-
-                var containerWidth = window.innerWidth;
-                var containerHeight = window.innerHeight;
-
-                var newWidth = containerWidth;
-                var newHeight = containerWidth / intendedAspectRatio;
-
-                if (newHeight > containerHeight) {
-                    newHeight = containerHeight;
-                    newWidth = containerHeight * intendedAspectRatio;
-                }
-
-                canvas.style.width = newWidth + 'px';
-                canvas.style.height = newHeight + 'px';
-            }
-
-            /*window.addEventListener('resize', ResizeCanvas);
-            window.addEventListener('load', ResizeCanvas);*/
             
             if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
                 var meta = document.createElement('meta');
