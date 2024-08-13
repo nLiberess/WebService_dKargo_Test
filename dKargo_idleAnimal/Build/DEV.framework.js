@@ -4861,73 +4861,75 @@ var ASM_CONSTS = {
 
   var instances = [];
   function _WebGLInputCreate(canvasId, x, y, width, height, fontsize, text, placeholder, isMultiLine, isPassword, isHidden, isMobile) {
+      var container = document.getElementById(UTF8ToString(canvasId));
+      var canvas = container.getElementsByTagName('canvas')[0];
   
-          var container = document.getElementById(UTF8ToString(canvasId));
-          var canvas = container.getElementsByTagName('canvas')[0];
-  
-          // if container is null and have canvas
-          if (!container && canvas)
-          {
-              // set the container to canvas.parentNode
-              container = canvas.parentNode;
-          }
-  
-          if(canvas)
-          {
-              var scaleX = container.offsetWidth / canvas.width;
-              var scaleY = container.offsetHeight / canvas.height;
-  
-              if(scaleX && scaleY)
-              {
-                  x *= scaleX;
-                  width *= scaleX;
-                  y *= scaleY;
-                  height *= scaleY;
-              }
-          }
-  
-          var input = document.createElement(isMultiLine?"textarea":"input");
-          input.style.position = "absolute";
-  
-          if(isMobile) {
-              input.style.bottom = 1 + "vh";
-              input.style.left = 5 + "vw";
-              input.style.width = 90 + "vw";
-              input.style.height = (isMultiLine? 18 : 10) + "vh";
-              input.style.fontSize = 5 + "vh";
-              input.style.borderWidth = 5 + "px";
-              input.style.borderColor = "#000000";
-          } else {
-              input.style.top = y + "px";
-              input.style.left = x + "px";
-              input.style.width = width + "px";
-              input.style.height = height + "px";
-              input.style.fontSize = fontsize + "px";
-          }
-  
-          input.style.outlineWidth = 1 + 'px';
-          input.style.opacity = isHidden?0:1;
-          input.style.resize = 'none'; // for textarea
-          input.style.padding = '0px 1px';
-          input.style.cursor = "default";
-          input.style.touchAction = 'none';
-  
-          input.spellcheck = false;
-          input.value = UTF8ToString(text);
-          input.placeholder = UTF8ToString(placeholder);
-          input.style.outlineColor = 'black';
-          
-          if(isPassword){
-              input.type = 'password';
-          }
-  
-          if(isMobile) {
-              document.body.appendChild(input);
-          } else {
-              container.appendChild(input);
-          }
-          return instances.push(input) - 1;
+      if (!container && canvas) {
+          container = canvas.parentNode;
       }
+  
+      if(canvas) {
+          var scaleX = container.offsetWidth / canvas.width;
+          var scaleY = container.offsetHeight / canvas.height;
+  
+          if(scaleX && scaleY) {
+              x *= scaleX;
+              width *= scaleX;
+              y *= scaleY;
+              height *= scaleY;
+          }
+      }
+  
+      var input = document.createElement(isMultiLine ? "textarea" : "input");
+      input.style.position = "absolute";
+  
+      if(isMobile) {
+          input.style.bottom = 1 + "vh";
+          input.style.left = 5 + "vw";
+          input.style.width = 90 + "vw";
+          input.style.height = (isMultiLine ? 18 : 10) + "vh";
+          input.style.fontSize = 5 + "vh";
+          input.style.borderWidth = 5 + "px";
+          input.style.borderColor = "#000000";
+  
+          if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+              input.style.position = "fixed";
+              input.style.top = "auto";
+              input.style.left = "5vw";
+              input.style.bottom = "1vh";
+              input.style.zIndex = 1000;
+              document.body.style.overflow = 'hidden';
+          }
+      } else {
+          input.style.top = y + "px";
+          input.style.left = x + "px";
+          input.style.width = width + "px";
+          input.style.height = height + "px";
+          input.style.fontSize = fontsize + "px";
+      }
+  
+      input.style.outlineWidth = 1 + 'px';
+      input.style.opacity = isHidden ? 0 : 1;
+      input.style.resize = 'none';
+      input.style.padding = '0px 1px';
+      input.style.cursor = "default";
+      input.style.touchAction = 'none';
+  
+      input.spellcheck = false;
+      input.value = UTF8ToString(text);
+      input.placeholder = UTF8ToString(placeholder);
+      input.style.outlineColor = 'black';
+      
+      if(isPassword){
+          input.type = 'password';
+      }
+  
+      if(!isMobile) {
+          container.appendChild(input);
+      }
+      
+      return instances.push(input) - 1;
+  }
 
   function _WebGLInputDelete(id){
           var input = instances[id];
