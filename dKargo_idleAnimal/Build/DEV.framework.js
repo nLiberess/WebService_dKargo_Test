@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3688592: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3688653: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3688717: function() {return Module.webglContextAttributes.powerPreference;},  
- 3688775: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3688830: function($0) {performance.now = function() { return $0; };},  
- 3688878: function($0) {performance.now = function() { return $0; };},  
- 3688926: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3688608: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3688669: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3688733: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3688791: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3688846: function($0) {performance.now = function() { return $0; };},  
+ 3688894: function($0) {performance.now = function() { return $0; };},  
+ 3688942: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -4862,9 +4862,6 @@ var ASM_CONSTS = {
   var instances = [];
   function _WebGLInputCreate(canvasId, x, y, width, height, fontsize, text, placeholder, isMultiLine, isPassword, isHidden, isMobile) {
   
-          if(isMobile)
-              return;
-              
           var container = document.getElementById(UTF8ToString(canvasId));
           var canvas = container.getElementsByTagName('canvas')[0];
   
