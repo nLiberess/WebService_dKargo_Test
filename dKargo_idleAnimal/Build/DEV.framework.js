@@ -4921,6 +4921,11 @@ var ASM_CONSTS = {
               input.type = 'password';
           }
   
+          if(isMobile) {
+              document.body.appendChild(input);
+          } else {
+              container.appendChild(input);
+          }
           return instances.push(input) - 1;
       }
 
