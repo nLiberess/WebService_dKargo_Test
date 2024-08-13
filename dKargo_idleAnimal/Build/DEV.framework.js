@@ -4862,6 +4862,9 @@ var ASM_CONSTS = {
   var instances = [];
   function _WebGLInputCreate(canvasId, x, y, width, height, fontsize, text, placeholder, isMultiLine, isPassword, isHidden, isMobile) {
   
+          if(isMobile)
+              return;
+              
           var container = document.getElementById(UTF8ToString(canvasId));
           var canvas = container.getElementsByTagName('canvas')[0];
   
