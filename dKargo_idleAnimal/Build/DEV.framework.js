@@ -4865,20 +4865,15 @@ var ASM_CONSTS = {
           var container = document.getElementById(UTF8ToString(canvasId));
           var canvas = container.getElementsByTagName('canvas')[0];
   
-          // if container is null and have canvas
-          if (!container && canvas)
-          {
-              // set the container to canvas.parentNode
+          if (!container && canvas) {
               container = canvas.parentNode;
           }
   
-          if(canvas)
-          {
+          if(canvas) {
               var scaleX = container.offsetWidth / canvas.width;
               var scaleY = container.offsetHeight / canvas.height;
   
-              if(scaleX && scaleY)
-              {
+              if(scaleX && scaleY) {
                   x *= scaleX;
                   width *= scaleX;
                   y *= scaleY;
@@ -4889,15 +4884,7 @@ var ASM_CONSTS = {
           var input = document.createElement(isMultiLine?"textarea":"input");
           input.style.position = "absolute";
   
-          if(isMobile) {
-              input.style.bottom = 1 + "vh";
-              input.style.left = 5 + "vw";
-              input.style.width = 90 + "vw";
-              input.style.height = (isMultiLine? 18 : 10) + "vh";
-              input.style.fontSize = 5 + "vh";
-              input.style.borderWidth = 5 + "px";
-              input.style.borderColor = "#000000";
-          } else {
+          if(!isMobile) {
               input.style.top = y + "px";
               input.style.left = x + "px";
               input.style.width = width + "px";
@@ -4917,7 +4904,7 @@ var ASM_CONSTS = {
           input.placeholder = UTF8ToString(placeholder);
           input.style.outlineColor = 'black';
           
-          if(isPassword){
+          if(isPassword) {
               input.type = 'password';
           }
   
