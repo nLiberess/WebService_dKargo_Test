@@ -1993,13 +1993,13 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  3688736: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
- 3688797: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
- 3688861: function() {return Module.webglContextAttributes.powerPreference;},  
- 3688919: function() {Module['emscripten_get_now_backup'] = performance.now;},  
- 3688974: function($0) {performance.now = function() { return $0; };},  
- 3689022: function($0) {performance.now = function() { return $0; };},  
- 3689070: function() {performance.now = Module['emscripten_get_now_backup'];}
+  3688752: function() {return Module.webglContextAttributes.premultipliedAlpha;},  
+ 3688813: function() {return Module.webglContextAttributes.preserveDrawingBuffer;},  
+ 3688877: function() {return Module.webglContextAttributes.powerPreference;},  
+ 3688935: function() {Module['emscripten_get_now_backup'] = performance.now;},  
+ 3688990: function($0) {performance.now = function() { return $0; };},  
+ 3689038: function($0) {performance.now = function() { return $0; };},  
+ 3689086: function() {performance.now = Module['emscripten_get_now_backup'];}
 };
 
 
@@ -2185,6 +2185,29 @@ var ASM_CONSTS = {
               else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
           }
       }
+
+  function _FirstSceneShowJS(typePtr, flag, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
+              var type = UTF8ToString(typePtr);
+              var status = UTF8ToString(statusPtr);
+              var objectName = UTF8ToString(objectNamePtr);
+              var callback = UTF8ToString(callbackPtr);
+              var fallback = UTF8ToString(fallbackPtr);
+              
+              try {
+                  if (window.parent) {
+                      const message = {
+                          messageType: type,
+                          firstSceneShowFlag: flag,
+                          status: status
+                      };
+                      window.parent.postMessage(message, "*");
+                  }
+                  window.unityInstance.SendMessage(objectName, callback, "Success " + type + ": " + status + ", flag: " + flag);
+              
+              } catch (error) {
+                  window.unityInstance.SendMessage(objectName, fallback, "Failed " + type + ": " + JSON.stringify(error, Object.getOwnPropertyNames(error)));
+              }
+          }
 
   function _GameDataSubmitIntJS(typePtr, submitTypePtr, submitValuePtr, statusPtr, objectNamePtr, callbackPtr, fallbackPtr) {
           var type = UTF8ToString(typePtr);
@@ -15802,6 +15825,7 @@ function checkIncomingModuleAPI() {
 var asmLibraryArg = {
   "DeleteDataJS": _DeleteDataJS,
   "ExitFullscreen": _ExitFullscreen,
+  "FirstSceneShowJS": _FirstSceneShowJS,
   "GameDataSubmitIntJS": _GameDataSubmitIntJS,
   "GameDataSubmitStrJS": _GameDataSubmitStrJS,
   "GetJSMemoryInfo": _GetJSMemoryInfo,
