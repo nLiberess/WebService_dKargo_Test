@@ -88,11 +88,15 @@
             document.body.appendChild(script);
 
             window.onblur = function() {
-                SendMessage('GameMgr', 'OnFocusChanged', 0);
+                if(window.unityInstance) {
+                    window.unityInstance.SendMessage("GameMgr", "OnFocusChanged", 0);
+                }
             };
             
             window.onfocus = function() {
-                SendMessage('GameMgr', 'OnFocusChanged', 1);
+                if(window.unityInstance) {
+                    window.unityInstance.SendMessage("GameMgr", "OnFocusChanged", 1);
+                }
             };
 
             function SendProgress(progressRate){
