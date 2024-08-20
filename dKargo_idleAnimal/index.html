@@ -142,6 +142,9 @@
                         case "environment":
                             window.unityInstance.SendMessage("DataMgr", "Recv_Environment", jsonData);
                             break;
+                        case "visibilityChange":
+                            window.unityInstance.SendMessage("GameMgr", "Recv_FocusChanged", jsonData);
+                            break;
                     }
                 } catch (error) {
                     console.error("Invalid data:", error);
